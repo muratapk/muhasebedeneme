@@ -1,0 +1,36 @@
+﻿@model WebApplication3.Models.Okul
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Okul</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OkulAdi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OkulAdi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.VergiNo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VergiNo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ilce_Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ilce_Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Okul_Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

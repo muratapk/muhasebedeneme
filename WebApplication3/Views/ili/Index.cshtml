@@ -4,7 +4,12 @@
 }
 
 <h1>Index</h1>
-<h1>Index</h1>
+@if(TempData["Success"]!=null)
+{
+    <div class="alert alert-warning" role="alert">
+        @TempData["Success"]
+    </div>
+}
 <a class="btn btn-primary" href="/ili/Create">Ekle</a>
 <table class="table table-striped">
     <tr>

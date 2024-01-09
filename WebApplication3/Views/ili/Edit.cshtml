@@ -1,21 +1,22 @@
 ﻿@model WebApplication3.Models.ili
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Create</h1>
+<h1>Edit</h1>
 
-<form method="post" action="Create">
+<form method="post" action="Edit">
+    <input type="hidden" asp-for="il_Id" />
     <div class="form-group row">
         <label for="text" class="col-4 col-form-label">İlin Adı</label>
         <div class="col-8">
-            <input id="text" asp-for="il_Adi" type="text" class="form-control">
+            <input id="text"  asp-for="il_Adi" type="text" class="form-control">
             <span asp-validation-for="il_Adi" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group row">
         <div class="offset-4 col-8">
-            <button name="submit" type="submit" class="btn btn-primary">Ekle</button>
+            <button name="submit" type="submit" class="btn btn-primary">Silme</button>
         </div>
     </div>
 </form>
