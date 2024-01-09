@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApplication3.Data;
+using WebApplication3.Models;
 
 namespace WebApplication3.Controllers
 {
@@ -22,6 +23,14 @@ namespace WebApplication3.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult Create(ili gelen)
+        {
+            _context.ilis.Add(gelen);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+
         }
     }
 }
