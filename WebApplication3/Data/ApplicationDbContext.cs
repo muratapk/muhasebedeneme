@@ -11,7 +11,8 @@ namespace WebApplication3.Data
         public DbSet<ili> ilis { get; set; }
         public DbSet<ilcesi> ilcesis { get; set; }
         public DbSet<Okul> Okuls { get; set; }
-        public DbSet<Brans> brans { get; set; } 
+        public DbSet<Brans>Brans { get; set; }
+        public DbSet<Maliyet> Maliyets { get; set; }    
 
     }
 }

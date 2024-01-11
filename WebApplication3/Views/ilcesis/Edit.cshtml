@@ -14,15 +14,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ilce_Id" />
             <div class="form-group">
+                <label asp-for="il_Id" class="control-label"></label>
+                <Select asp-for="il_Id" asp-items="ViewBag.kateliste" class="form-control"></Select>
+                <span asp-validation-for="il_Id" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <label asp-for="ilce_Adi" class="control-label"></label>
                 <input asp-for="ilce_Adi" class="form-control" />
                 <span asp-validation-for="ilce_Adi" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="il_Id" class="control-label"></label>
-                <input asp-for="il_Id" class="form-control" />
-                <span asp-validation-for="il_Id" class="text-danger"></span>
-            </div>
+            
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

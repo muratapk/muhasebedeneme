@@ -11,10 +11,11 @@ namespace WebApplication3.Models
         [Required(ErrorMessage ="İlçe Adı Boş Geçilemez")]
         [DisplayName("İlçenin Adı")]
         public string ilce_Adi { get; set; } = string.Empty;
-        [ForeignKey("ili")]
+       
         [DisplayName("İlin Adı")]
         [Required(ErrorMessage ="İlin Adı")]
+       
         public int? il_Id { get; set; }
-        public virtual ili? ili { get; set; }
+        public virtual ili? ilis { get; set; }
     }
 }

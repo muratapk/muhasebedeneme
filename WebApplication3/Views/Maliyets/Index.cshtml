@@ -1,0 +1,101 @@
+﻿@model IEnumerable<WebApplication3.Models.Maliyet>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.isin_Adi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isin_Adedi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tutari)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pesin_Gelir)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.kar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idari_pay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.shcek)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.iscilik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.malzeme)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ogretmen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ogrenci)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Okul_Id)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.isin_Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isin_Adedi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tutari)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pesin_Gelir)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idari_pay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.shcek)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.iscilik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.malzeme)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ogretmen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ogrenci)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Okul_Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Maliyet_Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Maliyet_Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Maliyet_Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

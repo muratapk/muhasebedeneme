@@ -10,6 +10,7 @@ namespace WebApplication3.Models
         public int VergiNo { get; set; }
         
         public int ilce_Id { get; set; }
+        public virtual List<Maliyet>? Maliyets { get; set; }
 
     }
 }

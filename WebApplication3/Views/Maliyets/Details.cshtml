@@ -1,0 +1,90 @@
+﻿@model WebApplication3.Models.Maliyet
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Maliyet</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.isin_Adi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.isin_Adi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.isin_Adedi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.isin_Adedi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tutari)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tutari)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.pesin_Gelir)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.pesin_Gelir)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.kar)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.kar)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idari_pay)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idari_pay)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.shcek)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.shcek)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.iscilik)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.iscilik)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.malzeme)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.malzeme)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ogretmen)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ogretmen)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ogrenci)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ogrenci)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Okul_Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Okul_Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Maliyet_Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

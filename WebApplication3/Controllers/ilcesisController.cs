@@ -48,6 +48,7 @@ namespace WebApplication3.Controllers
         // GET: ilcesis/Create
         public IActionResult Create()
         {
+            ViewBag.kateliste = new SelectList(_context.ilis, "il_Id", "il_Adi");
             return View();
         }
 
@@ -70,6 +71,7 @@ namespace WebApplication3.Controllers
         // GET: ilcesis/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.kateliste = new SelectList(_context.ilis, "il_Id", "il_Adi");
             if (id == null || _context.ilcesis == null)
             {
                 return NotFound();

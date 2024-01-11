@@ -13,7 +13,7 @@ namespace WebApplication3.Controllers
         }
         public IActionResult Index()
         {
-            var listem = _context.brans.ToList();
+            var listem = _context.Brans.ToList();
             return View(listem);
         }
         public IActionResult Create()
@@ -23,14 +23,14 @@ namespace WebApplication3.Controllers
         [HttpPost]
         public IActionResult Create(Brans gelen)
         {
-            _context.brans.Add(gelen);
+            _context.Brans.Add(gelen);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var bul = _context.brans.Find(id);
+            var bul = _context.Brans.Find(id);
             return View(bul);
         }
         [HttpPost]
@@ -43,7 +43,7 @@ namespace WebApplication3.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var bul = _context.brans.Find(id);
+            var bul = _context.Brans.Find(id);
             return View(bul);
         }
 
