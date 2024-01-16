@@ -21,6 +21,7 @@ namespace WebApplication3.Models
        
         public int Okul_Id { get; set; }
         public virtual Okul? Okul { get; set; }
+        public virtual ICollection<Hesap>? Hesaps { get; set; }   
 
     }
 }

@@ -39,6 +39,38 @@ namespace WebApplication3.Migrations
                     b.ToTable("Brans");
                 });
 
+            modelBuilder.Entity("WebApplication3.Models.Hesap", b =>
+                {
+                    b.Property<int>("Hesap_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Hesap_Id"), 1L, 1);
+
+                    b.Property<int>("Adet")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Maliyet_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Maliyet_Id1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Personel_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Personel_Id1")
+                        .HasColumnType("int");
+
+                    b.HasKey("Hesap_Id");
+
+                    b.HasIndex("Maliyet_Id1");
+
+                    b.HasIndex("Personel_Id1");
+
+                    b.ToTable("Hesaps");
+                });
+
             modelBuilder.Entity("WebApplication3.Models.ilcesi", b =>
                 {
                     b.Property<int>("ilce_Id")
@@ -160,6 +192,57 @@ namespace WebApplication3.Migrations
                     b.ToTable("Okuls");
                 });
 
+            modelBuilder.Entity("WebApplication3.Models.Personel", b =>
+                {
+                    b.Property<int>("Personel_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Personel_Id"), 1L, 1);
+
+                    b.Property<string>("AdSoyad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Brans_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Brans_Id1")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Iban")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TcNo")
+                        .HasColumnType("int");
+
+                    b.HasKey("Personel_Id");
+
+                    b.HasIndex("Brans_Id1");
+
+                    b.ToTable("Personels");
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.Hesap", b =>
+                {
+                    b.HasOne("WebApplication3.Models.Maliyet", "Maliyet")
+                        .WithMany("Hesaps")
+                        .HasForeignKey("Maliyet_Id1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApplication3.Models.Personel", "Personel")
+                        .WithMany("Hesap")
+                        .HasForeignKey("Personel_Id1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Maliyet");
+
+                    b.Navigation("Personel");
+                });
+
             modelBuilder.Entity("WebApplication3.Models.ilcesi", b =>
                 {
                     b.HasOne("WebApplication3.Models.ili", "ilis")
@@ -178,14 +261,40 @@ namespace WebApplication3.Migrations
                     b.Navigation("Okul");
                 });
 
+            modelBuilder.Entity("WebApplication3.Models.Personel", b =>
+                {
+                    b.HasOne("WebApplication3.Models.Brans", "Brans")
+                        .WithMany("Personels")
+                        .HasForeignKey("Brans_Id1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Brans");
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.Brans", b =>
+                {
+                    b.Navigation("Personels");
+                });
+
             modelBuilder.Entity("WebApplication3.Models.ili", b =>
                 {
                     b.Navigation("ilcesis");
                 });
 
+            modelBuilder.Entity("WebApplication3.Models.Maliyet", b =>
+                {
+                    b.Navigation("Hesaps");
+                });
+
             modelBuilder.Entity("WebApplication3.Models.Okul", b =>
                 {
                     b.Navigation("Maliyets");
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.Personel", b =>
+                {
+                    b.Navigation("Hesap");
                 });
 #pragma warning restore 612, 618
         }

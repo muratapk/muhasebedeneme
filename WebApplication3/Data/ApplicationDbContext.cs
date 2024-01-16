@@ -12,7 +12,9 @@ namespace WebApplication3.Data
         public DbSet<ilcesi> ilcesis { get; set; }
         public DbSet<Okul> Okuls { get; set; }
         public DbSet<Brans>Brans { get; set; }
-        public DbSet<Maliyet> Maliyets { get; set; }    
+        public DbSet<Maliyet> Maliyets { get; set; }
+        public DbSet<Hesap> Hesaps { get; set; }
+        public DbSet<Personel> Personels { get; set; }
 
     }
 }
