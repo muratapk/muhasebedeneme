@@ -1,18 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication3.Models
 {
     public class Personel
     {
         [Key]
-        public int Personel_Id { get; set; }
-        public string AdSoyad { get; set; }
-        public int TcNo { get; set; }
+        public int PersonelId { get; set; }
+        public string AdSoyad { get; set; } = string.Empty; 
+        public int? TcNo { get; set; }
 
-        public  string  Iban { get; set; }
-        public int Brans_Id { get; set; }
-        public virtual Brans Brans { get; set; }
-        public virtual ICollection<Hesap> Hesap { get; set; }
+        public string Iban { get; set; } = string.Empty;
+        public int BransId { get; set; }
+        [NotMapped]
+        public virtual  Brans? Brans { get; set; }
+		[NotMapped]
+		public virtual  List<Hesap>? Hesap { get; set; }
 
     }
 }

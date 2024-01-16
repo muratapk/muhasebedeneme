@@ -22,9 +22,8 @@ namespace WebApplication3.Controllers
         // GET: Hesaps
         public async Task<IActionResult> Index()
         {
-              return _context.Hesaps != null ? 
-                          View(await _context.Hesaps.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Hesaps'  is null.");
+            var applicationDbContext = _context.Hesaps.Include(h => h.Maliyet).Include(h => h.Personel);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Hesaps/Details/5
@@ -36,6 +35,8 @@ namespace WebApplication3.Controllers
             }
 
             var hesap = await _context.Hesaps
+                .Include(h => h.Maliyet)
+                .Include(h => h.Personel)
                 .FirstOrDefaultAsync(m => m.Hesap_Id == id);
             if (hesap == null)
             {
@@ -48,6 +49,8 @@ namespace WebApplication3.Controllers
         // GET: Hesaps/Create
         public IActionResult Create()
         {
+            ViewData["Maliyet_Id"] = new SelectList(_context.Maliyets, "MaliyetId", "MaliyetId");
+            ViewData["Personel_Id"] = new SelectList(_context.Personels, "PersonelId", "PersonelId");
             return View();
         }
 
@@ -64,6 +67,8 @@ namespace WebApplication3.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Maliyet_Id"] = new SelectList(_context.Maliyets, "MaliyetId", "MaliyetId", hesap.Maliyet_Id);
+            ViewData["Personel_Id"] = new SelectList(_context.Personels, "PersonelId", "PersonelId", hesap.Personel_Id);
             return View(hesap);
         }
 
@@ -80,6 +85,8 @@ namespace WebApplication3.Controllers
             {
                 return NotFound();
             }
+            ViewData["Maliyet_Id"] = new SelectList(_context.Maliyets, "MaliyetId", "MaliyetId", hesap.Maliyet_Id);
+            ViewData["Personel_Id"] = new SelectList(_context.Personels, "PersonelId", "PersonelId", hesap.Personel_Id);
             return View(hesap);
         }
 
@@ -115,6 +122,8 @@ namespace WebApplication3.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Maliyet_Id"] = new SelectList(_context.Maliyets, "MaliyetId", "MaliyetId", hesap.Maliyet_Id);
+            ViewData["Personel_Id"] = new SelectList(_context.Personels, "PersonelId", "PersonelId", hesap.Personel_Id);
             return View(hesap);
         }
 
@@ -127,6 +136,8 @@ namespace WebApplication3.Controllers
             }
 
             var hesap = await _context.Hesaps
+                .Include(h => h.Maliyet)
+                .Include(h => h.Personel)
                 .FirstOrDefaultAsync(m => m.Hesap_Id == id);
             if (hesap == null)
             {

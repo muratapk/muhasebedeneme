@@ -6,22 +6,32 @@ namespace WebApplication3.Models
     public class Maliyet
     {
         [Key]
-        public int Maliyet_Id { get; set; }
-        public string isin_Adi { get; set; }
-        public int isin_Adedi { get; set; }
-        public decimal Tutari { get; set; }
-        public decimal pesin_Gelir { get; set; }
-        public decimal kar { get; set; }
-        public decimal idari_pay { get; set; }
-        public decimal shcek { get; set; }
-        public decimal iscilik { get; set; }
-        public decimal malzeme { get; set; }
-        public decimal ogretmen { get; set; }
-        public decimal ogrenci { get; set; }
-       
-        public int Okul_Id { get; set; }
+        public int MaliyetId { get; set; }
+        public string Isin_Adi { get; set; } = string.Empty;
+        public int Isin_Adedi { get; set; }
+		[Column(TypeName = "decimal(18,2)")]
+		public decimal Tutari { get; set; }
+		[Column(TypeName = "decimal(18,2)")]
+		public decimal Pesin_Gelir { get; set; }
+		[Column(TypeName = "decimal(18,2)")]
+		public decimal Kar { get; set; }
+		[Column(TypeName = "decimal(18,2)")]
+		public decimal Idari_pay { get; set; }
+		[Column(TypeName = "decimal(18,2)")]
+		public decimal Shcek { get; set; }
+		[Column(TypeName = "decimal(18,2)")]
+		public decimal Iscilik { get; set; }
+		[Column(TypeName = "decimal(18,2)")]
+		public decimal Malzeme { get; set; }
+		[Column(TypeName = "decimal(18,2)")]
+		public decimal Ogretmen { get; set; }
+		[Column(TypeName = "decimal(18,2)")]
+		public decimal Ogrenci { get; set; }
+
+     
+        public int OkulId { get; set; }
         public virtual Okul? Okul { get; set; }
-        public virtual ICollection<Hesap>? Hesaps { get; set; }   
+        public virtual  List<Hesap>? Hesaps { get; set; }   
 
     }
 }

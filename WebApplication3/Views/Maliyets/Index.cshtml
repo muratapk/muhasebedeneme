@@ -13,40 +13,40 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.isin_Adi)
+                @Html.DisplayNameFor(model => model.Isin_Adi)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.isin_Adedi)
+                @Html.DisplayNameFor(model => model.Isin_Adedi)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Tutari)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.pesin_Gelir)
+                @Html.DisplayNameFor(model => model.Pesin_Gelir)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.kar)
+                @Html.DisplayNameFor(model => model.Kar)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.idari_pay)
+                @Html.DisplayNameFor(model => model.Idari_pay)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.shcek)
+                @Html.DisplayNameFor(model => model.Shcek)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.iscilik)
+                @Html.DisplayNameFor(model => model.Iscilik)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.malzeme)
+                @Html.DisplayNameFor(model => model.Malzeme)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ogretmen)
+                @Html.DisplayNameFor(model => model.Ogretmen)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ogrenci)
+                @Html.DisplayNameFor(model => model.Ogrenci)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Okul_Id)
+                @Html.DisplayNameFor(model => model.Okul)
             </th>
             <th></th>
         </tr>
@@ -55,45 +55,45 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.isin_Adi)
+                @Html.DisplayFor(modelItem => item.Isin_Adi)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.isin_Adedi)
+                @Html.DisplayFor(modelItem => item.Isin_Adedi)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tutari)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.pesin_Gelir)
+                @Html.DisplayFor(modelItem => item.Pesin_Gelir)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.kar)
+                @Html.DisplayFor(modelItem => item.Kar)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.idari_pay)
+                @Html.DisplayFor(modelItem => item.Idari_pay)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.shcek)
+                @Html.DisplayFor(modelItem => item.Shcek)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.iscilik)
+                @Html.DisplayFor(modelItem => item.Iscilik)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.malzeme)
+                @Html.DisplayFor(modelItem => item.Malzeme)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ogretmen)
+                @Html.DisplayFor(modelItem => item.Ogretmen)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ogrenci)
+                @Html.DisplayFor(modelItem => item.Ogrenci)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Okul_Id)
+                @Html.DisplayFor(modelItem => item.Okul.OkulId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Maliyet_Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Maliyet_Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Maliyet_Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.MaliyetId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MaliyetId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MaliyetId">Delete</a>
             </td>
         </tr>
 }

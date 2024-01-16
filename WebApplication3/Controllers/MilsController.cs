@@ -10,90 +10,87 @@ using WebApplication3.Models;
 
 namespace WebApplication3.Controllers
 {
-    public class OkulsController : Controller
+    public class MilsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public OkulsController(ApplicationDbContext context)
+        public MilsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Okuls
+        // GET: Mils
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Okuls.Include(o => o.Milce);
-            return View(await applicationDbContext.ToListAsync());
+              return _context.Mils != null ? 
+                          View(await _context.Mils.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Mils'  is null.");
         }
 
-        // GET: Okuls/Details/5
+        // GET: Mils/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Okuls == null)
+            if (id == null || _context.Mils == null)
             {
                 return NotFound();
             }
 
-            var okul = await _context.Okuls
-                .Include(o => o.Milce)
-                .FirstOrDefaultAsync(m => m.OkulId == id);
-            if (okul == null)
+            var mil = await _context.Mils
+                .FirstOrDefaultAsync(m => m.MilId == id);
+            if (mil == null)
             {
                 return NotFound();
             }
 
-            return View(okul);
+            return View(mil);
         }
 
-        // GET: Okuls/Create
+        // GET: Mils/Create
         public IActionResult Create()
         {
-            ViewData["MilceId"] = new SelectList(_context.Milces, "MilceId", "MilceId");
             return View();
         }
 
-        // POST: Okuls/Create
+        // POST: Mils/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OkulId,OkulAdi,VergiNo,MilceId")] Okul okul)
+        public async Task<IActionResult> Create([Bind("MilId,MilAdi")] Mil mil)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(okul);
+                _context.Add(mil);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MilceId"] = new SelectList(_context.Milces, "MilceId", "MilceId", okul.MilceId);
-            return View(okul);
+            return View(mil);
         }
 
-        // GET: Okuls/Edit/5
+        // GET: Mils/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Okuls == null)
+            if (id == null || _context.Mils == null)
             {
                 return NotFound();
             }
 
-            var okul = await _context.Okuls.FindAsync(id);
-            if (okul == null)
+            var mil = await _context.Mils.FindAsync(id);
+            if (mil == null)
             {
                 return NotFound();
             }
-            ViewData["MilceId"] = new SelectList(_context.Milces, "MilceId", "MilceId", okul.MilceId);
-            return View(okul);
+            return View(mil);
         }
 
-        // POST: Okuls/Edit/5
+        // POST: Mils/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OkulId,OkulAdi,VergiNo,MilceId")] Okul okul)
+        public async Task<IActionResult> Edit(int id, [Bind("MilId,MilAdi")] Mil mil)
         {
-            if (id != okul.OkulId)
+            if (id != mil.MilId)
             {
                 return NotFound();
             }
@@ -102,12 +99,12 @@ namespace WebApplication3.Controllers
             {
                 try
                 {
-                    _context.Update(okul);
+                    _context.Update(mil);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!OkulExists(okul.OkulId))
+                    if (!MilExists(mil.MilId))
                     {
                         return NotFound();
                     }
@@ -118,51 +115,49 @@ namespace WebApplication3.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MilceId"] = new SelectList(_context.Milces, "MilceId", "MilceId", okul.MilceId);
-            return View(okul);
+            return View(mil);
         }
 
-        // GET: Okuls/Delete/5
+        // GET: Mils/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Okuls == null)
+            if (id == null || _context.Mils == null)
             {
                 return NotFound();
             }
 
-            var okul = await _context.Okuls
-                .Include(o => o.Milce)
-                .FirstOrDefaultAsync(m => m.OkulId == id);
-            if (okul == null)
+            var mil = await _context.Mils
+                .FirstOrDefaultAsync(m => m.MilId == id);
+            if (mil == null)
             {
                 return NotFound();
             }
 
-            return View(okul);
+            return View(mil);
         }
 
-        // POST: Okuls/Delete/5
+        // POST: Mils/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Okuls == null)
+            if (_context.Mils == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Okuls'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Mils'  is null.");
             }
-            var okul = await _context.Okuls.FindAsync(id);
-            if (okul != null)
+            var mil = await _context.Mils.FindAsync(id);
+            if (mil != null)
             {
-                _context.Okuls.Remove(okul);
+                _context.Mils.Remove(mil);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool OkulExists(int id)
+        private bool MilExists(int id)
         {
-          return (_context.Okuls?.Any(e => e.OkulId == id)).GetValueOrDefault();
+          return (_context.Mils?.Any(e => e.MilId == id)).GetValueOrDefault();
         }
     }
 }

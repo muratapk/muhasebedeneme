@@ -24,15 +24,15 @@
             @Html.DisplayFor(model => model.VergiNo)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ilce_Id)
+            @Html.DisplayNameFor(model => model.Milce)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ilce_Id)
+            @Html.DisplayFor(model => model.Milce.MilceId)
         </dd>
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="Okul_Id" />
+        <input type="hidden" asp-for="OkulId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>

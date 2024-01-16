@@ -1,24 +1,35 @@
-﻿@model List<WebApplication3.Models.Brans>
+﻿@model IEnumerable<WebApplication3.Models.Brans>
+
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
-<a class="btn btn-primary" href="/Brans/Create">Ekle</a>
-<table class="table table-striped">
-    <tr>
-        <td>Branş Adı</td>
-        <td>Düzelt</td>
-        <td>Silme</td>
-    </tr>
-    @foreach(var item in Model)
-    {
-        <tr>
-            <td>@item.Brans_Adi</td>
-            <td><a class="btn btn-danger" href="/Brans/Edit/@item.Brans_Id">Düzelt</a></td>
-            <td><a class="btn btn-success" href="/Brans/Delete/@item.Brans_Id">Sil</a></td>
-        </tr>
-        
-    }
-</table>
 
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Brans_Adi)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brans_Adi)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Brans_Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Brans_Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Brans_Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -53,129 +53,119 @@ namespace WebApplication3.Migrations
                     b.Property<int>("Maliyet_Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Maliyet_Id1")
-                        .HasColumnType("int");
-
                     b.Property<int>("Personel_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Personel_Id1")
                         .HasColumnType("int");
 
                     b.HasKey("Hesap_Id");
 
-                    b.HasIndex("Maliyet_Id1");
+                    b.HasIndex("Maliyet_Id");
 
-                    b.HasIndex("Personel_Id1");
+                    b.HasIndex("Personel_Id");
 
                     b.ToTable("Hesaps");
                 });
 
-            modelBuilder.Entity("WebApplication3.Models.ilcesi", b =>
-                {
-                    b.Property<int>("ilce_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ilce_Id"), 1L, 1);
-
-                    b.Property<int?>("il_Id")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<string>("ilce_Adi")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ilisil_Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("ilce_Id");
-
-                    b.HasIndex("ilisil_Id");
-
-                    b.ToTable("ilcesis");
-                });
-
-            modelBuilder.Entity("WebApplication3.Models.ili", b =>
-                {
-                    b.Property<int>("il_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("il_Id"), 1L, 1);
-
-                    b.Property<string>("il_Adi")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("il_Id");
-
-                    b.ToTable("ilis");
-                });
-
             modelBuilder.Entity("WebApplication3.Models.Maliyet", b =>
                 {
-                    b.Property<int>("Maliyet_Id")
+                    b.Property<int>("MaliyetId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Maliyet_Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaliyetId"), 1L, 1);
 
-                    b.Property<int>("Okul_Id")
+                    b.Property<decimal>("Idari_pay")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Iscilik")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Isin_Adedi")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Okul_Id1")
+                    b.Property<string>("Isin_Adi")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Kar")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Malzeme")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Ogrenci")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Ogretmen")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("OkulId")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("Pesin_Gelir")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Shcek")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Tutari")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("idari_pay")
-                        .HasColumnType("decimal(18,2)");
+                    b.HasKey("MaliyetId");
 
-                    b.Property<decimal>("iscilik")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("isin_Adedi")
-                        .HasColumnType("int");
-
-                    b.Property<string>("isin_Adi")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("kar")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("malzeme")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("ogrenci")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("ogretmen")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("pesin_Gelir")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("shcek")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Maliyet_Id");
-
-                    b.HasIndex("Okul_Id1");
+                    b.HasIndex("OkulId");
 
                     b.ToTable("Maliyets");
                 });
 
-            modelBuilder.Entity("WebApplication3.Models.Okul", b =>
+            modelBuilder.Entity("WebApplication3.Models.Mil", b =>
                 {
-                    b.Property<int>("Okul_Id")
+                    b.Property<int>("MilId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Okul_Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MilId"), 1L, 1);
+
+                    b.Property<string>("MilAdi")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MilId");
+
+                    b.ToTable("Mils");
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.Milce", b =>
+                {
+                    b.Property<int>("MilceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MilceId"), 1L, 1);
+
+                    b.Property<int>("MilId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MilceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MilceId");
+
+                    b.HasIndex("MilId");
+
+                    b.ToTable("Milces");
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.Okul", b =>
+                {
+                    b.Property<int>("OkulId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OkulId"), 1L, 1);
+
+                    b.Property<int?>("MilceId")
+                        .HasColumnType("int");
 
                     b.Property<string>("OkulAdi")
                         .IsRequired()
@@ -184,42 +174,36 @@ namespace WebApplication3.Migrations
                     b.Property<int>("VergiNo")
                         .HasColumnType("int");
 
-                    b.Property<int>("ilce_Id")
-                        .HasColumnType("int");
+                    b.HasKey("OkulId");
 
-                    b.HasKey("Okul_Id");
+                    b.HasIndex("MilceId");
 
                     b.ToTable("Okuls");
                 });
 
             modelBuilder.Entity("WebApplication3.Models.Personel", b =>
                 {
-                    b.Property<int>("Personel_Id")
+                    b.Property<int>("PersonelId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Personel_Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonelId"), 1L, 1);
 
                     b.Property<string>("AdSoyad")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Brans_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Brans_Id1")
+                    b.Property<int>("BransId")
                         .HasColumnType("int");
 
                     b.Property<string>("Iban")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TcNo")
+                    b.Property<int?>("TcNo")
                         .HasColumnType("int");
 
-                    b.HasKey("Personel_Id");
-
-                    b.HasIndex("Brans_Id1");
+                    b.HasKey("PersonelId");
 
                     b.ToTable("Personels");
                 });
@@ -228,13 +212,13 @@ namespace WebApplication3.Migrations
                 {
                     b.HasOne("WebApplication3.Models.Maliyet", "Maliyet")
                         .WithMany("Hesaps")
-                        .HasForeignKey("Maliyet_Id1")
+                        .HasForeignKey("Maliyet_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WebApplication3.Models.Personel", "Personel")
-                        .WithMany("Hesap")
-                        .HasForeignKey("Personel_Id1")
+                        .WithMany()
+                        .HasForeignKey("Personel_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -243,43 +227,35 @@ namespace WebApplication3.Migrations
                     b.Navigation("Personel");
                 });
 
-            modelBuilder.Entity("WebApplication3.Models.ilcesi", b =>
-                {
-                    b.HasOne("WebApplication3.Models.ili", "ilis")
-                        .WithMany("ilcesis")
-                        .HasForeignKey("ilisil_Id");
-
-                    b.Navigation("ilis");
-                });
-
             modelBuilder.Entity("WebApplication3.Models.Maliyet", b =>
                 {
                     b.HasOne("WebApplication3.Models.Okul", "Okul")
                         .WithMany("Maliyets")
-                        .HasForeignKey("Okul_Id1");
+                        .HasForeignKey("OkulId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Okul");
                 });
 
-            modelBuilder.Entity("WebApplication3.Models.Personel", b =>
+            modelBuilder.Entity("WebApplication3.Models.Milce", b =>
                 {
-                    b.HasOne("WebApplication3.Models.Brans", "Brans")
-                        .WithMany("Personels")
-                        .HasForeignKey("Brans_Id1")
+                    b.HasOne("WebApplication3.Models.Mil", "Mil")
+                        .WithMany("Milces")
+                        .HasForeignKey("MilId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Brans");
+                    b.Navigation("Mil");
                 });
 
-            modelBuilder.Entity("WebApplication3.Models.Brans", b =>
+            modelBuilder.Entity("WebApplication3.Models.Okul", b =>
                 {
-                    b.Navigation("Personels");
-                });
+                    b.HasOne("WebApplication3.Models.Milce", "Milce")
+                        .WithMany()
+                        .HasForeignKey("MilceId");
 
-            modelBuilder.Entity("WebApplication3.Models.ili", b =>
-                {
-                    b.Navigation("ilcesis");
+                    b.Navigation("Milce");
                 });
 
             modelBuilder.Entity("WebApplication3.Models.Maliyet", b =>
@@ -287,14 +263,14 @@ namespace WebApplication3.Migrations
                     b.Navigation("Hesaps");
                 });
 
+            modelBuilder.Entity("WebApplication3.Models.Mil", b =>
+                {
+                    b.Navigation("Milces");
+                });
+
             modelBuilder.Entity("WebApplication3.Models.Okul", b =>
                 {
                     b.Navigation("Maliyets");
-                });
-
-            modelBuilder.Entity("WebApplication3.Models.Personel", b =>
-                {
-                    b.Navigation("Hesap");
                 });
 #pragma warning restore 612, 618
         }

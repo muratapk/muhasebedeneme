@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.VergiNo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ilce_Id)
+                @Html.DisplayNameFor(model => model.Milce)
             </th>
             <th></th>
         </tr>
@@ -34,12 +34,12 @@
                 @Html.DisplayFor(modelItem => item.VergiNo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ilce_Id)
+                @Html.DisplayFor(modelItem => item.Milce.MilceId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Okul_Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Okul_Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Okul_Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.OkulId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.OkulId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.OkulId">Delete</a>
             </td>
         </tr>
 }

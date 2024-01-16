@@ -22,9 +22,8 @@ namespace WebApplication3.Controllers
         // GET: Maliyets
         public async Task<IActionResult> Index()
         {
-              return _context.Maliyets != null ? 
-                          View(await _context.Maliyets.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Maliyets'  is null.");
+            var applicationDbContext = _context.Maliyets.Include(m => m.Okul);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Maliyets/Details/5
@@ -36,7 +35,8 @@ namespace WebApplication3.Controllers
             }
 
             var maliyet = await _context.Maliyets
-                .FirstOrDefaultAsync(m => m.Maliyet_Id == id);
+                .Include(m => m.Okul)
+                .FirstOrDefaultAsync(m => m.MaliyetId == id);
             if (maliyet == null)
             {
                 return NotFound();
@@ -48,6 +48,7 @@ namespace WebApplication3.Controllers
         // GET: Maliyets/Create
         public IActionResult Create()
         {
+            ViewData["OkulId"] = new SelectList(_context.Okuls, "OkulId", "OkulId");
             return View();
         }
 
@@ -56,7 +57,7 @@ namespace WebApplication3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Maliyet_Id,isin_Adi,isin_Adedi,Tutari,pesin_Gelir,kar,idari_pay,shcek,iscilik,malzeme,ogretmen,ogrenci,Okul_Id")] Maliyet maliyet)
+        public async Task<IActionResult> Create([Bind("MaliyetId,Isin_Adi,Isin_Adedi,Tutari,Pesin_Gelir,Kar,Idari_pay,Shcek,Iscilik,Malzeme,Ogretmen,Ogrenci,OkulId")] Maliyet maliyet)
         {
             if (ModelState.IsValid)
             {
@@ -64,6 +65,7 @@ namespace WebApplication3.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["OkulId"] = new SelectList(_context.Okuls, "OkulId", "OkulId", maliyet.OkulId);
             return View(maliyet);
         }
 
@@ -80,6 +82,7 @@ namespace WebApplication3.Controllers
             {
                 return NotFound();
             }
+            ViewData["OkulId"] = new SelectList(_context.Okuls, "OkulId", "OkulId", maliyet.OkulId);
             return View(maliyet);
         }
 
@@ -88,9 +91,9 @@ namespace WebApplication3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Maliyet_Id,isin_Adi,isin_Adedi,Tutari,pesin_Gelir,kar,idari_pay,shcek,iscilik,malzeme,ogretmen,ogrenci,Okul_Id")] Maliyet maliyet)
+        public async Task<IActionResult> Edit(int id, [Bind("MaliyetId,Isin_Adi,Isin_Adedi,Tutari,Pesin_Gelir,Kar,Idari_pay,Shcek,Iscilik,Malzeme,Ogretmen,Ogrenci,OkulId")] Maliyet maliyet)
         {
-            if (id != maliyet.Maliyet_Id)
+            if (id != maliyet.MaliyetId)
             {
                 return NotFound();
             }
@@ -104,7 +107,7 @@ namespace WebApplication3.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MaliyetExists(maliyet.Maliyet_Id))
+                    if (!MaliyetExists(maliyet.MaliyetId))
                     {
                         return NotFound();
                     }
@@ -115,6 +118,7 @@ namespace WebApplication3.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["OkulId"] = new SelectList(_context.Okuls, "OkulId", "OkulId", maliyet.OkulId);
             return View(maliyet);
         }
 
@@ -127,7 +131,8 @@ namespace WebApplication3.Controllers
             }
 
             var maliyet = await _context.Maliyets
-                .FirstOrDefaultAsync(m => m.Maliyet_Id == id);
+                .Include(m => m.Okul)
+                .FirstOrDefaultAsync(m => m.MaliyetId == id);
             if (maliyet == null)
             {
                 return NotFound();
@@ -157,7 +162,7 @@ namespace WebApplication3.Controllers
 
         private bool MaliyetExists(int id)
         {
-          return (_context.Maliyets?.Any(e => e.Maliyet_Id == id)).GetValueOrDefault();
+          return (_context.Maliyets?.Any(e => e.MaliyetId == id)).GetValueOrDefault();
         }
     }
 }

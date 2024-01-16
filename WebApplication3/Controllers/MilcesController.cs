@@ -10,89 +10,90 @@ using WebApplication3.Models;
 
 namespace WebApplication3.Controllers
 {
-    public class ilcesisController : Controller
+    public class MilcesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ilcesisController(ApplicationDbContext context)
+        public MilcesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: ilcesis
+        // GET: Milces
         public async Task<IActionResult> Index()
         {
-              return _context.ilcesis != null ? 
-                          View(await _context.ilcesis.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.ilcesis'  is null.");
+            var applicationDbContext = _context.Milces.Include(m => m.Mil);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: ilcesis/Details/5
+        // GET: Milces/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.ilcesis == null)
+            if (id == null || _context.Milces == null)
             {
                 return NotFound();
             }
 
-            var ilcesi = await _context.ilcesis
-                .FirstOrDefaultAsync(m => m.ilce_Id == id);
-            if (ilcesi == null)
+            var milce = await _context.Milces
+                .Include(m => m.Mil)
+                .FirstOrDefaultAsync(m => m.MilceId == id);
+            if (milce == null)
             {
                 return NotFound();
             }
 
-            return View(ilcesi);
+            return View(milce);
         }
 
-        // GET: ilcesis/Create
+        // GET: Milces/Create
         public IActionResult Create()
         {
-            ViewBag.kateliste = new SelectList(_context.ilis, "il_Id", "il_Adi");
+            ViewData["MilId"] = new SelectList(_context.Mils, "MilId", "MilId");
             return View();
         }
 
-        // POST: ilcesis/Create
+        // POST: Milces/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ilce_Id,ilce_Adi,il_Id")] ilcesi ilcesi)
+        public async Task<IActionResult> Create([Bind("MilceId,MilceName,MilId")] Milce milce)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(ilcesi);
+                _context.Add(milce);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(ilcesi);
+            ViewData["MilId"] = new SelectList(_context.Mils, "MilId", "MilId", milce.MilId);
+            return View(milce);
         }
 
-        // GET: ilcesis/Edit/5
+        // GET: Milces/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            ViewBag.kateliste = new SelectList(_context.ilis, "il_Id", "il_Adi");
-            if (id == null || _context.ilcesis == null)
+            if (id == null || _context.Milces == null)
             {
                 return NotFound();
             }
 
-            var ilcesi = await _context.ilcesis.FindAsync(id);
-            if (ilcesi == null)
+            var milce = await _context.Milces.FindAsync(id);
+            if (milce == null)
             {
                 return NotFound();
             }
-            return View(ilcesi);
+            ViewData["MilId"] = new SelectList(_context.Mils, "MilId", "MilId", milce.MilId);
+            return View(milce);
         }
 
-        // POST: ilcesis/Edit/5
+        // POST: Milces/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ilce_Id,ilce_Adi,il_Id")] ilcesi ilcesi)
+        public async Task<IActionResult> Edit(int id, [Bind("MilceId,MilceName,MilId")] Milce milce)
         {
-            if (id != ilcesi.ilce_Id)
+            if (id != milce.MilceId)
             {
                 return NotFound();
             }
@@ -101,12 +102,12 @@ namespace WebApplication3.Controllers
             {
                 try
                 {
-                    _context.Update(ilcesi);
+                    _context.Update(milce);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ilcesiExists(ilcesi.ilce_Id))
+                    if (!MilceExists(milce.MilceId))
                     {
                         return NotFound();
                     }
@@ -117,49 +118,51 @@ namespace WebApplication3.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(ilcesi);
+            ViewData["MilId"] = new SelectList(_context.Mils, "MilId", "MilId", milce.MilId);
+            return View(milce);
         }
 
-        // GET: ilcesis/Delete/5
+        // GET: Milces/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.ilcesis == null)
+            if (id == null || _context.Milces == null)
             {
                 return NotFound();
             }
 
-            var ilcesi = await _context.ilcesis
-                .FirstOrDefaultAsync(m => m.ilce_Id == id);
-            if (ilcesi == null)
+            var milce = await _context.Milces
+                .Include(m => m.Mil)
+                .FirstOrDefaultAsync(m => m.MilceId == id);
+            if (milce == null)
             {
                 return NotFound();
             }
 
-            return View(ilcesi);
+            return View(milce);
         }
 
-        // POST: ilcesis/Delete/5
+        // POST: Milces/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.ilcesis == null)
+            if (_context.Milces == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.ilcesis'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Milces'  is null.");
             }
-            var ilcesi = await _context.ilcesis.FindAsync(id);
-            if (ilcesi != null)
+            var milce = await _context.Milces.FindAsync(id);
+            if (milce != null)
             {
-                _context.ilcesis.Remove(ilcesi);
+                _context.Milces.Remove(milce);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ilcesiExists(int id)
+        private bool MilceExists(int id)
         {
-          return (_context.ilcesis?.Any(e => e.ilce_Id == id)).GetValueOrDefault();
+          return (_context.Milces?.Any(e => e.MilceId == id)).GetValueOrDefault();
         }
     }
 }

@@ -12,16 +12,16 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.isin_Adi)
+            @Html.DisplayNameFor(model => model.Isin_Adi)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.isin_Adi)
+            @Html.DisplayFor(model => model.Isin_Adi)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.isin_Adedi)
+            @Html.DisplayNameFor(model => model.Isin_Adedi)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.isin_Adedi)
+            @Html.DisplayFor(model => model.Isin_Adedi)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Tutari)
@@ -30,63 +30,63 @@
             @Html.DisplayFor(model => model.Tutari)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.pesin_Gelir)
+            @Html.DisplayNameFor(model => model.Pesin_Gelir)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.pesin_Gelir)
+            @Html.DisplayFor(model => model.Pesin_Gelir)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.kar)
+            @Html.DisplayNameFor(model => model.Kar)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.kar)
+            @Html.DisplayFor(model => model.Kar)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.idari_pay)
+            @Html.DisplayNameFor(model => model.Idari_pay)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.idari_pay)
+            @Html.DisplayFor(model => model.Idari_pay)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.shcek)
+            @Html.DisplayNameFor(model => model.Shcek)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.shcek)
+            @Html.DisplayFor(model => model.Shcek)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.iscilik)
+            @Html.DisplayNameFor(model => model.Iscilik)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.iscilik)
+            @Html.DisplayFor(model => model.Iscilik)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.malzeme)
+            @Html.DisplayNameFor(model => model.Malzeme)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.malzeme)
+            @Html.DisplayFor(model => model.Malzeme)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ogretmen)
+            @Html.DisplayNameFor(model => model.Ogretmen)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ogretmen)
+            @Html.DisplayFor(model => model.Ogretmen)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ogrenci)
+            @Html.DisplayNameFor(model => model.Ogrenci)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ogrenci)
+            @Html.DisplayFor(model => model.Ogrenci)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Okul_Id)
+            @Html.DisplayNameFor(model => model.Okul)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Okul_Id)
+            @Html.DisplayFor(model => model.Okul.OkulId)
         </dd>
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="Maliyet_Id" />
+        <input type="hidden" asp-for="MaliyetId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>

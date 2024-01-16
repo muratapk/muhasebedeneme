@@ -36,7 +36,7 @@ namespace WebApplication3.Controllers
             }
 
             var personel = await _context.Personels
-                .FirstOrDefaultAsync(m => m.Personel_Id == id);
+                .FirstOrDefaultAsync(m => m.PersonelId == id);
             if (personel == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace WebApplication3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Personel_Id,AdSoyad,TcNo,Iban,Brans_Id")] Personel personel)
+        public async Task<IActionResult> Create([Bind("PersonelId,AdSoyad,TcNo,Iban,BransId")] Personel personel)
         {
             if (ModelState.IsValid)
             {
@@ -88,9 +88,9 @@ namespace WebApplication3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Personel_Id,AdSoyad,TcNo,Iban,Brans_Id")] Personel personel)
+        public async Task<IActionResult> Edit(int id, [Bind("PersonelId,AdSoyad,TcNo,Iban,BransId")] Personel personel)
         {
-            if (id != personel.Personel_Id)
+            if (id != personel.PersonelId)
             {
                 return NotFound();
             }
@@ -104,7 +104,7 @@ namespace WebApplication3.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PersonelExists(personel.Personel_Id))
+                    if (!PersonelExists(personel.PersonelId))
                     {
                         return NotFound();
                     }
@@ -127,7 +127,7 @@ namespace WebApplication3.Controllers
             }
 
             var personel = await _context.Personels
-                .FirstOrDefaultAsync(m => m.Personel_Id == id);
+                .FirstOrDefaultAsync(m => m.PersonelId == id);
             if (personel == null)
             {
                 return NotFound();
@@ -157,7 +157,7 @@ namespace WebApplication3.Controllers
 
         private bool PersonelExists(int id)
         {
-          return (_context.Personels?.Any(e => e.Personel_Id == id)).GetValueOrDefault();
+          return (_context.Personels?.Any(e => e.PersonelId == id)).GetValueOrDefault();
         }
     }
 }

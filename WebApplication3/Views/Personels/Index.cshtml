@@ -22,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.Iban)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Brans_Id)
+                @Html.DisplayNameFor(model => model.BransId)
             </th>
             <th></th>
         </tr>
@@ -40,12 +40,12 @@
                 @Html.DisplayFor(modelItem => item.Iban)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Brans_Id)
+                @Html.DisplayFor(modelItem => item.BransId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Personel_Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Personel_Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Personel_Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.PersonelId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PersonelId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PersonelId">Delete</a>
             </td>
         </tr>
 }
