@@ -6,9 +6,17 @@ namespace WebApplication3.Models
 	{
 		[Key]
 		public int MilceId { get; set; }
+
+		[Display(Name ="İlçenin Adı")]
+		[Required(ErrorMessage ="Bu Alanı Boş Bırakamazsınız")]
 		public string MilceName { get; set;}=String.Empty;
-		public int MilId {  get; set; }	
-		public virtual Mil? Mil { get; set; }
+
+        [Display(Name = "İlin Adı")]
+        [Required(ErrorMessage = "Bu Alanı Boş Bırakamazsınız")]
+        public int MilId {  get; set; }
+
+        [Display(Name = "İlin Adı")]
+        public virtual Mil? Mil { get; set; }
 
 	}
 }

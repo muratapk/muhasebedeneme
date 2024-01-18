@@ -48,7 +48,9 @@ namespace WebApplication3.Controllers
         // GET: Okuls/Create
         public IActionResult Create()
         {
-            ViewData["MilceId"] = new SelectList(_context.Milces, "MilceId", "MilceId");
+            ViewData["MilceId"] = new SelectList(_context.Milces, "MilceId", "MilceName");
+            ViewData["MilId"] = new SelectList(_context.Mils, "MilId", "MilAdi");
+
             return View();
         }
 
@@ -65,7 +67,7 @@ namespace WebApplication3.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MilceId"] = new SelectList(_context.Milces, "MilceId", "MilceId", okul.MilceId);
+            ViewData["MilceId"] = new SelectList(_context.Milces, "MilceId", "MilceName", okul.MilceId);
             return View(okul);
         }
 
@@ -82,7 +84,7 @@ namespace WebApplication3.Controllers
             {
                 return NotFound();
             }
-            ViewData["MilceId"] = new SelectList(_context.Milces, "MilceId", "MilceId", okul.MilceId);
+            ViewData["MilceId"] = new SelectList(_context.Milces, "MilceId", "MilceName", okul.MilceId);
             return View(okul);
         }
 
@@ -118,7 +120,7 @@ namespace WebApplication3.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MilceId"] = new SelectList(_context.Milces, "MilceId", "MilceId", okul.MilceId);
+            ViewData["MilceId"] = new SelectList(_context.Milces, "MilceId", "MilceName", okul.MilceId);
             return View(okul);
         }
 

@@ -48,7 +48,7 @@ namespace WebApplication3.Controllers
         // GET: Milces/Create
         public IActionResult Create()
         {
-            ViewData["MilId"] = new SelectList(_context.Mils, "MilId", "MilId");
+            ViewData["MilId"] = new SelectList(_context.Mils, "MilId", "MilAdi");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace WebApplication3.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MilId"] = new SelectList(_context.Mils, "MilId", "MilId", milce.MilId);
+            ViewData["MilId"] = new SelectList(_context.Mils, "MilId", "MilAdi", milce.MilId);
             return View(milce);
         }
 
@@ -82,7 +82,7 @@ namespace WebApplication3.Controllers
             {
                 return NotFound();
             }
-            ViewData["MilId"] = new SelectList(_context.Mils, "MilId", "MilId", milce.MilId);
+            ViewData["MilId"] = new SelectList(_context.Mils, "MilId", "MilAdi", milce.MilId);
             return View(milce);
         }
 
@@ -118,7 +118,7 @@ namespace WebApplication3.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MilId"] = new SelectList(_context.Mils, "MilId", "MilId", milce.MilId);
+            ViewData["MilId"] = new SelectList(_context.Mils, "MilId", "MilAdi", milce.MilId);
             return View(milce);
         }
 
