@@ -10,100 +10,90 @@ using WebApplication3.Models;
 
 namespace WebApplication3.Controllers
 {
-    public class OkulsController : Controller
+    public class AdminsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public OkulsController(ApplicationDbContext context)
+        public AdminsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Okuls
+        // GET: Admins
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Okuls.Include(o => o.Milce);
+            var applicationDbContext = _context.Admins.Include(a => a.Okul);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Okuls/Details/5
+        // GET: Admins/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Okuls == null)
+            if (id == null || _context.Admins == null)
             {
                 return NotFound();
             }
 
-            var okul = await _context.Okuls
-                .Include(o => o.Milce)
-                .FirstOrDefaultAsync(m => m.OkulId == id);
-            if (okul == null)
+            var admin = await _context.Admins
+                .Include(a => a.Okul)
+                .FirstOrDefaultAsync(m => m.AdminId == id);
+            if (admin == null)
             {
                 return NotFound();
             }
 
-            return View(okul);
+            return View(admin);
         }
 
-        // GET: Okuls/Create
+        // GET: Admins/Create
         public IActionResult Create()
         {
-            ViewData["MilceId"] = new SelectList(_context.Milces, "MilceId", "MilceName");
-            ViewData["MilId"] = new SelectList(_context.Mils, "MilId", "MilAdi");
-
+            ViewData["OkulId"] = new SelectList(_context.Okuls, "OkulId", "OkulId");
             return View();
         }
 
-        // POST: Okuls/Create
+        // POST: Admins/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OkulId,OkulAdi,VergiNo,MilceId")] Okul okul)
+        public async Task<IActionResult> Create([Bind("AdminId,AdminName,AdminEmail,AdminPassword,AdminUserName,OkulId")] Admin admin)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(okul);
+                _context.Add(admin);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MilceId"] = new SelectList(_context.Milces, "MilceId", "MilceName", okul.MilceId);
-            return View(okul);
-        }
-       
-        public JsonResult ilcegetir(int id)
-        {
-            var ilce = _context.Milces.Where(x => x.MilId == id).ToList();
-            return Json(ilce);
+            ViewData["OkulId"] = new SelectList(_context.Okuls, "OkulId", "OkulId", admin.OkulId);
+            return View(admin);
         }
 
-
-
-        // GET: Okuls/Edit/5
+        // GET: Admins/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Okuls == null)
+            if (id == null || _context.Admins == null)
             {
                 return NotFound();
             }
 
-            var okul = await _context.Okuls.FindAsync(id);
-            if (okul == null)
+            var admin = await _context.Admins.FindAsync(id);
+            if (admin == null)
             {
                 return NotFound();
             }
-            ViewData["MilceId"] = new SelectList(_context.Milces, "MilceId", "MilceName", okul.MilceId);
-            return View(okul);
+            ViewData["OkulId"] = new SelectList(_context.Okuls, "OkulId", "OkulId", admin.OkulId);
+            return View(admin);
         }
 
-        // POST: Okuls/Edit/5
+        // POST: Admins/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OkulId,OkulAdi,VergiNo,MilceId")] Okul okul)
+        public async Task<IActionResult> Edit(int id, [Bind("AdminId,AdminName,AdminEmail,AdminPassword,AdminUserName,OkulId")] Admin admin)
         {
-            if (id != okul.OkulId)
+            if (id != admin.AdminId)
             {
                 return NotFound();
             }
@@ -112,12 +102,12 @@ namespace WebApplication3.Controllers
             {
                 try
                 {
-                    _context.Update(okul);
+                    _context.Update(admin);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!OkulExists(okul.OkulId))
+                    if (!AdminExists(admin.AdminId))
                     {
                         return NotFound();
                     }
@@ -128,51 +118,51 @@ namespace WebApplication3.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MilceId"] = new SelectList(_context.Milces, "MilceId", "MilceName", okul.MilceId);
-            return View(okul);
+            ViewData["OkulId"] = new SelectList(_context.Okuls, "OkulId", "OkulId", admin.OkulId);
+            return View(admin);
         }
 
-        // GET: Okuls/Delete/5
+        // GET: Admins/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Okuls == null)
+            if (id == null || _context.Admins == null)
             {
                 return NotFound();
             }
 
-            var okul = await _context.Okuls
-                .Include(o => o.Milce)
-                .FirstOrDefaultAsync(m => m.OkulId == id);
-            if (okul == null)
+            var admin = await _context.Admins
+                .Include(a => a.Okul)
+                .FirstOrDefaultAsync(m => m.AdminId == id);
+            if (admin == null)
             {
                 return NotFound();
             }
 
-            return View(okul);
+            return View(admin);
         }
 
-        // POST: Okuls/Delete/5
+        // POST: Admins/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Okuls == null)
+            if (_context.Admins == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Okuls'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Admins'  is null.");
             }
-            var okul = await _context.Okuls.FindAsync(id);
-            if (okul != null)
+            var admin = await _context.Admins.FindAsync(id);
+            if (admin != null)
             {
-                _context.Okuls.Remove(okul);
+                _context.Admins.Remove(admin);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool OkulExists(int id)
+        private bool AdminExists(int id)
         {
-          return (_context.Okuls?.Any(e => e.OkulId == id)).GetValueOrDefault();
+          return (_context.Admins?.Any(e => e.AdminId == id)).GetValueOrDefault();
         }
     }
 }

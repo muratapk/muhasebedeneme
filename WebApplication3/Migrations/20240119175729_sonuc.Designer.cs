@@ -12,7 +12,7 @@ using WebApplication3.Data;
 namespace WebApplication3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240116234222_sonuc")]
+    [Migration("20240119175729_sonuc")]
     partial class sonuc
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,40 @@ namespace WebApplication3.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("WebApplication3.Models.Admin", b =>
+                {
+                    b.Property<int>("AdminId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminId"), 1L, 1);
+
+                    b.Property<string>("AdminEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdminName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdminPassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdminUserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("OkulId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AdminId");
+
+                    b.HasIndex("OkulId");
+
+                    b.ToTable("Admins");
+                });
 
             modelBuilder.Entity("WebApplication3.Models.Brans", b =>
                 {
@@ -210,6 +244,15 @@ namespace WebApplication3.Migrations
                     b.ToTable("Personels");
                 });
 
+            modelBuilder.Entity("WebApplication3.Models.Admin", b =>
+                {
+                    b.HasOne("WebApplication3.Models.Okul", "Okul")
+                        .WithMany("Admins")
+                        .HasForeignKey("OkulId");
+
+                    b.Navigation("Okul");
+                });
+
             modelBuilder.Entity("WebApplication3.Models.Hesap", b =>
                 {
                     b.HasOne("WebApplication3.Models.Maliyet", "Maliyet")
@@ -272,6 +315,8 @@ namespace WebApplication3.Migrations
 
             modelBuilder.Entity("WebApplication3.Models.Okul", b =>
                 {
+                    b.Navigation("Admins");
+
                     b.Navigation("Maliyets");
                 });
 #pragma warning restore 612, 618

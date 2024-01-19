@@ -91,6 +91,28 @@ namespace WebApplication3.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Admins",
+                columns: table => new
+                {
+                    AdminId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AdminName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdminEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdminPassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdminUserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OkulId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Admins", x => x.AdminId);
+                    table.ForeignKey(
+                        name: "FK_Admins_Okuls_OkulId",
+                        column: x => x.OkulId,
+                        principalTable: "Okuls",
+                        principalColumn: "OkulId");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Maliyets",
                 columns: table => new
                 {
@@ -148,6 +170,11 @@ namespace WebApplication3.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Admins_OkulId",
+                table: "Admins",
+                column: "OkulId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Hesaps_Maliyet_Id",
                 table: "Hesaps",
                 column: "Maliyet_Id");
@@ -175,6 +202,9 @@ namespace WebApplication3.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Admins");
+
             migrationBuilder.DropTable(
                 name: "Brans");
 

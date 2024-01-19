@@ -15,6 +15,7 @@ namespace WebApplication3.Data
         public DbSet<Maliyet>? Maliyets { get; set; }
         public DbSet<Hesap>? Hesaps { get; set; }
         public DbSet<Personel>? Personels { get; set; }
+        public DbSet<Admin> Admins { get; set; }
 
     }
 }

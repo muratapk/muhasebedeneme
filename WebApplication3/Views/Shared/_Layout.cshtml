@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - WebApplication3</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebApplication3.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -20,10 +21,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admins" asp-action="Index">Admin</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cikis" asp-action="Privacy">Çıkış</a>
                         </li>
                          <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Brans" asp-action="Index">Branşlar</a>
@@ -75,21 +76,24 @@
         $(document).ready(function(){
 
   ////////////////////////////////////
-            $("#ilsec").click(function(){
+            $("#ilsec").change(function(){
+            $("ilcesec").empty();
                 let deger=$(this).val();
-                alert(deger);
+               
                     $.ajax({
                      type:'POST',
-                     url:'/Okul/ilcegetir',
+                     url:'/Okuls/ilcegetir',
                      data:{id:deger},
                      datatype:'Json',
                      success:function(data)
                      {
-
+                        $.each(data,function(i,row){
+   $("#ilcesec").append('<option value='+ row.MilceId+'>'+row.MilceName+'</option>');
+                        });
                      },
                      error:function(data)
                      {
-
+                         alert('Hata Oluştu');
                      }
                     });
             });

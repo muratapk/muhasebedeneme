@@ -17,6 +17,7 @@ namespace WebApplication3.Models
 		public virtual Milce? Milce { get; set; }
 		
 		public virtual List<Maliyet>? Maliyets { get; set; }
+        public virtual List<Admin>? Admins { get;set; }
 
     }
 }
