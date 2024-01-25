@@ -74,7 +74,7 @@ namespace WebApplication3.Controllers
         public JsonResult ilcegetir(int id)
         {
             var ilce = _context.Milces.Where(x => x.MilId == id).ToList();
-            return Json(ilce);
+            return Json(new SelectList(ilce,"MilceId", "MilceName"));
         }
 
 

@@ -77,18 +77,19 @@
 
   ////////////////////////////////////
             $("#ilsec").change(function(){
-            $("ilcesec").empty();
+            $("#ilcesec").empty();
                 let deger=$(this).val();
                
                     $.ajax({
                      type:'POST',
                      url:'/Okuls/ilcegetir',
                      data:{id:deger},
-                     datatype:'Json',
+                     dataType:'Json',
                      success:function(data)
                      {
+                        alert(data);
                         $.each(data,function(i,row){
-   $("#ilcesec").append('<option value='+ row.MilceId+'>'+row.MilceName+'</option>');
+                       $("#ilcesec").append('<option value='+row.value+'>'+row.text+'</option');
                         });
                      },
                      error:function(data)
